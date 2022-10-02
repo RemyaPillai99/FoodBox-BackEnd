@@ -6,24 +6,14 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/RemyaPillai99/FoodBox-BackEnd.git'
             }
         }
-      stage('Maven Compile') {
+        stage('clean') {
             steps {
-                echo '----------------- This is a compile phase ----------'
-                sh 'mvn clean compile'
+                sh "mvn clean"
             }
         }
-        
-         stage('Maven Test') {
+        stage('package') {
             steps {
-                echo '----------------- This is a compile phase ----------'
-                sh 'mvn clean test'
-            }
-        }
-        
-        stage('Maven Build') {
-             steps {
-                echo '----------------- This is a build phase ----------'
-                sh 'mvn clean package -DskipTests'
+                sh "mvn package"
             }
         }
 //         stage('docker compose') {
